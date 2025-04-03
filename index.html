@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prerna Pandey | Data Scientist</title>
+    <!-- Optimized CDN Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Combined and Enhanced CSS from Both Versions */
+        :root {
+            --neon-cyan: #0ff;
+            --dark-bg: #000;
+            --section-bg: rgba(0, 20, 30, 0.95);
+            --gradient-1: linear-gradient(45deg, #0ff, #0f0);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            padding-top: 70px;
+        }
+
+        /* Enhanced Matrix Background */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        /* Modern Navbar */
+        .navbar {
+            background: rgba(0, 30, 40, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1.2rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Animated Section Titles */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            margin-bottom: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+            to { text-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4); }
+        }
+
+        /* Enhanced Project Cards */
+        .project-card {
+            background: rgba(0, 30, 40, 0.8) !important;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 480px;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--neon-cyan);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        /* Modern Skill Items */
+        .skill-item {
+            position: relative;
+            padding: 1.5rem;
+            text-align: center;
+            background: rgba(0, 50, 60, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 80, 90, 0.4);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        /* Enhanced Contact Section */
+        .contact-section {
+            background: linear-gradient(45deg, #001520, #000b10);
+            border-top: 2px solid var(--neon-cyan);
+            padding: 4rem 0;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 8px var(--neon-cyan));
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.15);
+        }
+
+        /* 3D Hover Effects */
+        .hover-3d {
+            transform: perspective(1000px);
+            transition: transform 0.3s ease;
+        }
+
+        .hover-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(10px);
+        }
+
+        /* Responsive Enhancements */
+        @media (max-width: 768px) {
+            .project-card {
+                margin-bottom: 1.5rem;
+                min-height: auto;
+            }
+            
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+
+    <!-- Navigation (Enhanced) -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">PRERNA PANDEY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">PROJECTS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">SKILLS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section (Enhanced Content) -->
+    <section id="about" class="py-5">
+        <div class="container text-center">
+            <h2 class="section-title mb-5">DATA SCIENCE ENTHUSIAST</h2>
+            <div class="avatar-container mb-4 hover-3d">
+                <img src="images/projects/d.webp" alt="Prerna Pandey" 
+                     class="img-fluid rounded-circle border-3 border-primary"
+                     style="width: 220px; height: 220px; object-fit: cover;">
+            </div>
+            <p class="lead mb-4" style="max-width: 800px; margin: 0 auto;">I am a Data Science enthusiast with a strong foundation in Python, Machine Learning and SQL, eager to solve real-world problems through data-driven insights. Passionate about data visualization and predictive modeling, I enjoy uncovering patterns that drive business decisions. Constantly learning and exploring new technologies, I am excited to apply my skills to challenging projects and grow as a Data Scientist.
+            </p>
+            <div class="mt-4">
+                <a href="#contact" class="btn btn-outline-info btn-lg mx-2">Hire Me</a>
+                <a href="portfolio\Prerna_Pandey_Resume.pdfPrerna_Pandey_Resume.pdf" download class="btn btn-primary btn-lg mx-2">
+                    <i class="fas fa-download me-2"></i>Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (All 6 Projects Preserved) -->
+    <section id="projects" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">PROJECTS</h2>
+            <div class="row g-4">
+                <!-- Student Performance Prediction -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card hover-3d">
+                        <img src="images/projects/st.jpeg" class="card-img-top" alt="Student Analytics">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">Student Performance Prediction</h5>
+                            <div class="mb-3">
+                                <span class="badge bg-primary">Machine Learning</span>
+                                <span class="badge bg-success">Azure</span>
+                                <span class="badge bg-warning">Flask</span>
+                            </div>
+                            <p class="card-text">Developed a machine learning model to predict students  academic performance based on various factors such as study time, attendance and previous scores. The model helps educators and institutions identify at-risk students early and take proactive measures to improve their learning outcomes. </p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/Prerna2411/Student-Performance-Prediction" 
+                                   class="btn btn-outline-info btn-sm" target="_blank">
+                                   <i class="fab fa-github me-2"></i>View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movie Recommendation System -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card hover-3d">
+                        <img src="images/projects/3.jpg" class="card-img-top" alt="Movie Recommendations">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">Movie Recommendation System</h5>
+                            <div class="mb-3">
+                                <span class="badge bg-primary">NLP</span>
+                                <span class="badge bg-success">Cosine Similarity</span>
+                                <span class="badge bg-warning">Streamlit</span>
+                            </div>
+                            <p class="card-text">Designed a personalized movie recommendation system using collaborative filtering.The system analyzes user preferences, past interactions and movie features to suggest films that align with individual tastes.</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/Prerna2411/Movie_Recommender_System" 
+                                   class="btn btn-outline-info btn-sm" target="_blank">
+                                   <i class="fab fa-github me-2"></i>View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plant Disease Detection -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card hover-3d">
+                        <img src="images/projects/plant.jpg" class="card-img-top" alt="Plant Disease">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">Plant Disease Detection</h5>
+                            <div class="mb-3">
+                                <span class="badge bg-primary">CNN</span>
+                                <span class="badge bg-success">Deep Learning</span>
+                                <span class="badge bg-warning">TensorFlow</span>
+                            </div>
+                            <p class="card-text">Built a Deep Learning model using Convolutional Neural Networks (CNNs) to detect and classify plant diseases from leaf images. This project helps farmers and agricultural experts identify infections early,reducing crop damage and improving yield.</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/Prerna2411/Plant_Disease_prediction" 
+                                   class="btn btn-outline-info btn-sm" target="_blank">
+                                   <i class="fab fa-github me-2"></i>View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attendance System -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card hover-3d">
+                        <img src="images/projects/at.jpg" class="card-img-top" alt="Attendance System">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">Attendance System</h5>
+                            <div class="mb-3">
+                                <span class="badge bg-primary">Facial Recognition</span>
+                                <span class="badge bg-success">OpenCV</span>
+                            </div>
+                            <p class="card-text">Developed an attendance system using face recognition to automate student/employee attendance. Implemented OpenCV to detect and verify faces in real-time, reducing manual errors and streamlining attendance tracking.</p>
+                            <div class="mt-auto">
+                                <a href="#" class="btn btn-outline-info btn-sm disabled">
+                                   <i class="fab fa-github me-2"></i>Private Repo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza Sales Dashboard -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card hover-3d">
+                        <img src="images/projects/sales.jpg" class="card-img-top" alt="Sales Dashboard">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">Pizza Sales Dashboard</h5>
+                            <div class="mb-3">
+                                <span class="badge bg-primary">Power BI</span>
+                                <span class="badge bg-success">Data Visualization</span>
+                            </div>
+                            <p class="card-text">Created an interactive data visualization dashboard to analyze pizza sales trends, customer preferences, and revenue insights. Used Power BI and SQL to process sales data, identify best-selling items, and optimize pricing strategies</p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/Prerna2411/Pizza_Sales_dashboard" 
+                                   class="btn btn-outline-info btn-sm" target="_blank">
+                                   <i class="fab fa-github me-2"></i>View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Churn Prediction -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="project-card hover-3d">
+                        <img src="images/projects/ccp.png" class="card-img-top" alt="Customer Churn">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">Customer Churn Prediction</h5>
+                            <div class="mb-3">
+                                <span class="badge bg-primary">ANN</span>
+                                <span class="badge bg-success">Deep Learning</span>
+                            </div>
+                            <p class="card-text">Built a customer churn prediction model using Artificial Neural Networks (ANNs) to identify customers likely to leave a service. The model analyzes customer behavior, usage patterns, and service interactions to help businesses take proactive retention measures. </p>
+                            <div class="mt-auto">
+                                <a href="https://github.com/Prerna2411/Customer_Churn_prediction" 
+                                   class="btn btn-outline-info btn-sm" target="_blank">
+                                   <i class="fab fa-github me-2"></i>View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (All 6 Skills Preserved) -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">TECHNICAL EXPERTISE</h2>
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="skill-item hover-3d">
+                        <img src="images/skills/py.png" alt="Python" class="img-fluid mb-3" style="height: 60px;">
+                        <h5>Python</h5>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="skill-item hover-3d">
+                        <img src="images/skills/sqll.png" alt="SQL" class="img-fluid mb-3" style="height: 60px;">
+                        <h5>SQL</h5>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="skill-item hover-3d">
+                        <img src="images/skills/ml.webp" alt="Machine Learning" class="img-fluid mb-3" style="height: 60px;">
+                        <h5>Machine Learning</h5>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="skill-item hover-3d">
+                        <img src="images/skills/power bi.webp" alt="Power BI" class="img-fluid mb-3" style="height: 60px;">
+                        <h5>Power BI</h5>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="skill-item hover-3d">
+                        <img src="images/skills/stats.webp" alt="Statistics" class="img-fluid mb-3" style="height: 60px;">
+                        <h5>Statistics</h5>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="skill-item hover-3d">
+                        <img src="images/skills/dl.jpeg" alt="Deep Learning" class="img-fluid mb-3" style="height: 60px;">
+                        <h5>Deep Learning</h5>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Enhanced Version) -->
+    <section id="contact" class="contact-section">
+        <div class="container text-center">
+            <h2 class="section-title mb-5">CONNECT WITH ME</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-info mb-5">
+                        <div class="d-flex flex-wrap justify-content-center gap-4">
+                            <a href="mailto:pprerna42@gmail.com" class="contact-item">
+                                <i class="fas fa-envelope fa-2x text-info"></i>
+                                <p class="mt-2">pprerna42@gmail.com</p>
+                            </a>
+                            <a href="tel:+919780123466" class="contact-item">
+                                <i class="fas fa-phone fa-2x text-info"></i>
+                                <p class="mt-2">+91 9780123466</p>
+                            </a>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt fa-2x text-info"></i>
+                                <p class="mt-2">Mohali, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/prernapandey10" target="_blank" class="mx-3">
+                            <img src="images/icons/linkedin.png" class="social-icon" alt="LinkedIn">
+                        </a>
+                        <a href="https://github.com/Prerna2411" target="_blank" class="mx-3">
+                            <img src="images/icons/github.png" class="social-icon" alt="GitHub">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Enhanced Matrix Animation with Preloader Integration
+    (function() {
+        // Preloader elements
+        const preloader = document.querySelector('.preloader');
+        
+        // Matrix initialization
+        const matrixCanvas = document.getElementById('matrix');
+        const matrixCtx = matrixCanvas.getContext('2d');
+        let animationFrame;
+        
+        // High-DPI adjustment
+        const dpr = window.devicePixelRatio || 1;
+        
+        function resizeCanvas() {
+            matrixCanvas.width = window.innerWidth * dpr;
+            matrixCanvas.height = window.innerHeight * dpr;
+            matrixCtx.scale(dpr, dpr);
+        }
+
+        const chars = '01';
+        const fontSize = 16;
+        let columns = 0;
+        const drops = [];
+        
+        function initMatrix() {
+            columns = Math.floor(matrixCanvas.width / fontSize);
+            drops.length = columns;
+            drops.fill(1);
+        }
+
+        function drawMatrix() {
+            matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            
+            matrixCtx.fillStyle = '#0F0';
+            matrixCtx.font = `${fontSize}px 'Fira Code', monospace`;
+
+            drops.forEach((drop, i) => {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                matrixCtx.fillText(char, i * fontSize, drop * fontSize);
+                
+                if(drop * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            });
+            
+            animationFrame = requestAnimationFrame(drawMatrix);
+        }
+
+        // Initialize on window load
+        window.addEventListener('load', () => {
+            resizeCanvas();
+            initMatrix();
+            drawMatrix();
+            if(preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+        });
+
+        // Cleanup on window close
+        window.addEventListener('beforeunload', () => {
+            cancelAnimationFrame(animationFrame);
+        });
+
+        // Responsive handling
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initMatrix();
+        });
+    })();
+
+    // Enhanced Smooth Scroll with Offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) {
+                const offset = 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: targetPosition - offset,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL without jumping
+                history.pushState(null, null, `#${target.id}`);
+            }
+        });
+    });
+
+    // Advanced Navbar Scroll Effect
+    (function() {
+        const nav = document.querySelector('.navbar');
+        let lastScroll = 0;
+        const scrollThreshold = 50;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            
+            // Scroll direction detection
+            if(currentScroll <= 0) {
+                nav.classList.remove('scrolled');
+            } 
+            else if(currentScroll > lastScroll && currentScroll > scrollThreshold) {
+                nav.classList.add('scrolled');
+            } 
+            else if(currentScroll < lastScroll) {
+                nav.classList.add('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+    })();
+</script>
+</body>
+</html>
